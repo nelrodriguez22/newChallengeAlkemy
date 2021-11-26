@@ -14,8 +14,8 @@ encargara de chequearlo por ti. Espero que la disfrutes tanto como yo disfrute d
 
 
 
-`Caracteristicas tecnicas:`
-    axios:^0.24.0 -Libreria para hacer peticiones http  
+`Caracteristicas tecnicas:`  
+axios:^0.24.0 -Libreria para hacer peticiones http  
 	 formik:"^2.2.9 -Libreria para manejar formularios  
 	 immer: ^9.0.6 -Libreria para manejar estados  
 	 react-redux:^7.2.6-Libreria para manejar estados de react con hooks disponibles  
