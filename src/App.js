@@ -2,11 +2,15 @@ import React, { useReducer, useEffect } from 'react';
 import { AppRouter } from './routers/AppRouter';
 import { AuthContext } from './auth/AuthContext';
 import { authReducer } from './auth/authReducer';
+import { ToastContainer } from "react-toastify";
+
+
 
 
 
 
 function App() {
+
 
 	const init =()=> {
 		return JSON.parse(localStorage.getItem('user')) || {isLogged:false};
@@ -22,10 +26,13 @@ function App() {
 		<>
 		<AuthContext.Provider value={{user,dispatch}}>
 				<AppRouter />
+				<ToastContainer/>
 		</AuthContext.Provider>
 		
 		</>
 	);
 }
+
+
 
 export default App;

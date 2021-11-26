@@ -3,7 +3,6 @@ import {	BrowserRouter,Switch,Route} from 'react-router-dom';
 
 import { PrivateRoute } from './PrivateRoute';
 import { Loginpage } from '../components/Loginpage';
-
 import { DbRoutes } from './DbRoutes';
 import { AuthContext } from '../auth/AuthContext';
 
@@ -11,8 +10,10 @@ import { AuthContext } from '../auth/AuthContext';
 export const AppRouter = () => {
 	const { user} = useContext(AuthContext)
 	return (
+			
 		<BrowserRouter>
-			<div>
+	
+			
 				<Switch>
 					<Route exact path="/login" component={Loginpage} />
 
@@ -23,7 +24,7 @@ export const AppRouter = () => {
 
 					/>
 				</Switch>
-			</div>
+			
 		</BrowserRouter>
 	)
 }

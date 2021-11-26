@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -9,7 +11,6 @@ import { types } from "../types/types";
 export const Loginpage = () => {
 	const url = "http://challenge-react.alkemy.org/";
 	const history = useHistory();
-	
 	const {dispatch} = useContext(AuthContext);
 
 
@@ -30,7 +31,16 @@ export const Loginpage = () => {
 				history.push("/home");
 			})
 			.catch(({ response}) => {
-				alert(response.data.error);
+				toast.error(response.data.error, {
+					position: "bottom-center",
+					autoClose: 1500,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				});
 			});
 	}
 
@@ -74,7 +84,9 @@ export const Loginpage = () => {
 							onChange={formik.handleChange}
 							value={formik.values.email}
 						/>
-						{formik.errors.email ? <div>{formik.errors.email}</div> : null}
+						{formik.errors.email 
+						? <div>{formik.errors.email}</div> 
+						: null}
 					</div>
 					<div className="mb-3">
 						<label
@@ -89,7 +101,9 @@ export const Loginpage = () => {
 							onChange={formik.handleChange}
 							value={formik.values.password}
 						/>
-						{formik.errors.password ? <div>{formik.errors.password}</div> : null}
+						{formik.errors.password 
+						? <div>{formik.errors.password}</div> 
+						: null}
 					</div>
 					<button
 						className="btn btn-primary"
