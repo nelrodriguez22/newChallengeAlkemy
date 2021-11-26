@@ -1,4 +1,4 @@
-## Alkemy Challenge App
+# Alkemy Challenge App
 
 App realizada para aplicar a la aceleracion de diciembre de Alkemy.
 
@@ -14,11 +14,11 @@ encargara de chequearlo por ti. Espero que la disfrutes tanto como yo disfrute d
 
 
 
-#`Caracteristicas tecnicas:`
-    axios:^0.24.0 -Libreria para hacer peticiones http
-    formik:"^2.2.9 -Libreria para manejar formularios
-    immer: ^9.0.6 -Libreria para manejar estados
-    react-redux:^7.2.6-Libreria para manejar estados de react con hooks disponibles
-    react-router-dom: ^5.3.0- Libreria para manejar las rutas
-    react-toastify:^8.1.0-Libreria utilizada para mostrar mensajes de alerta en pantalla
-    redux: ^4.1.2-Libreria para manejar estados
+`Caracteristicas tecnicas:`
+    axios:^0.24.0 -Libreria para hacer peticiones http  
+	 formik:"^2.2.9 -Libreria para manejar formularios  
+	 immer: ^9.0.6 -Libreria para manejar estados  
+	 react-redux:^7.2.6-Libreria para manejar estados de react con hooks disponibles  
+	 react-router-dom: ^5.3.0- Libreria para manejar las rutas  
+	 react-toastify:^8.1.0-Libreria utilizada para mostrar mensajes de alerta en pantalla  
+	 redux: ^4.1.2-Libreria para manejar estados
