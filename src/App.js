@@ -13,13 +13,13 @@ function App() {
 
 
 	const init =()=> {
-		return JSON.parse(localStorage.getItem('user')) || {isLogged:false};
+		return JSON.parse(sessionStorage.getItem('user')) || {isLogged:false};
 	}
 	
 	const [user, dispatch] = useReducer(authReducer, {}, init);
 
 	useEffect(() => {
-		localStorage.setItem('user', JSON.stringify(user));
+		sessionStorage.setItem('user', JSON.stringify(user));
 	}, [user])
 
 	return (

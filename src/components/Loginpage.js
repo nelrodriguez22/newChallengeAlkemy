@@ -1,19 +1,19 @@
-import React, { useContext } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useContext } from "react"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
-import axios from "axios";
-import { useHistory } from "react-router-dom";
-import { useFormik } from "formik";
-import {AuthContext} from '../auth/AuthContext';
-import { types } from "../types/types";
+import axios from "axios"
+import { useHistory } from "react-router-dom"
+import { useFormik } from "formik"
+import {AuthContext} from '../auth/AuthContext'
+import { types } from "../types/types"
 
 export const Loginpage = () => {
-	const url = "http://challenge-react.alkemy.org/";
-	const history = useHistory();
-	const {dispatch} = useContext(AuthContext);
+	const url = "http://challenge-react.alkemy.org/"
+	const history = useHistory()
+	const {dispatch} = useContext(AuthContext)
 
-
+//llamada a la api de alkemy por el token para el inicio de sesion
 	const formSubmit = () => {
 		axios
 			.post(url, {
@@ -27,7 +27,7 @@ export const Loginpage = () => {
 						user:'AlkemyUser'
 					}
 				})
-				localStorage.setItem("token", data.token);
+				sessionStorage.setItem("token", data.token);
 				history.push("/home");
 			})
 			.catch(({ response}) => {
@@ -43,7 +43,7 @@ export const Loginpage = () => {
 				});
 			});
 	}
-
+//validacion del formulario 
 	const formik = useFormik({
 		initialValues: {
 			email: "",
@@ -67,7 +67,7 @@ export const Loginpage = () => {
 
 			formSubmit();
 		},
-	});
+	})
 
 	return (
 		<>
@@ -116,4 +116,4 @@ export const Loginpage = () => {
 			</div>
 		</>
 	);
-};
+}

@@ -18,9 +18,9 @@ export const Heroprofile = ({ history }) => {
 	}
 findHero()
 
-
+//funcion para retornar a la direccion anterior
   const handleClick = () => {
-     history.goBack();
+     history.goBack()
   }
 
   return (

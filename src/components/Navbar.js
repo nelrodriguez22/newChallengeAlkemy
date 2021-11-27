@@ -7,7 +7,7 @@ import { types } from "../types/types";
 export const Navbar = () => {
 	const history = useHistory()
 	const {user:{user}, dispatch} = useContext(AuthContext)
-	
+	//funcion para el manejo del logout de la sesion
 	const HandleLogout =()=>{
 		history.replace("/login");
 		dispatch({

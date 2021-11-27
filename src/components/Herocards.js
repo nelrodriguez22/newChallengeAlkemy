@@ -9,7 +9,7 @@ import {
 } from "../redux/ducks/tb";
 export const Herocards = ({...props}) => {
 	const dispatch = useDispatch();
-	
+	//evalua alineacion del heroe para asi poder actualizar el estado de redux
 	const HandleDelete = (id) => {
 			if (props.biography.alignment === "good") {
 			dispatch(removehero(id));
@@ -20,7 +20,7 @@ export const Herocards = ({...props}) => {
 			dispatch(downcountheroes());
 			dispatch(downbadheroes());
 		}
-	};
+	}
 	
 	return (
     <>

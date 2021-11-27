@@ -1,24 +1,27 @@
-import React, { useState } from "react";
-import { useFormik } from "formik";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { TeamBuilder } from "../teambuilder/TeamBuilder";
+import React, { useState } from "react"
+import { useFormik } from "formik"
+import axios from "axios"
+import { toast } from "react-toastify"
+import { TeamBuilder } from "../teambuilder/TeamBuilder"
 import {
   addhero,
   upcountheroes,
   upgoodheroes,
   upbadheroes,
-} from "../redux/ducks/tb";
-import { useDispatch, useSelector } from "react-redux";
-import "react-toastify/dist/ReactToastify.css";
+} from "../redux/ducks/tb"
+import { useDispatch, useSelector } from "react-redux"
+import "react-toastify/dist/ReactToastify.css"
 
 
 export const Searchpage = () => {
 	const baseUrl = "https://superheroapi.com/api/10221785482721212";
-	const [ heroes, setHeroes ] = useState([]);
-	const dispatch = useDispatch();
-	const {countHeroes, goodHeroes, badHeroes} = useSelector((state) => state.teambuilder);
+	const [ heroes, setHeroes ] = useState([])
+	const dispatch = useDispatch()
+	//selecciona contadores de la store
+	const {countHeroes, goodHeroes, badHeroes} = useSelector((state) => state.teambuilder)
+	//selecciona array de heroes de la store
 	const tb = useSelector((state)=> state.teambuilder.heroTB)
+	
 
 //consulta a la api segun la busqueda
 	const formik = useFormik({
@@ -50,7 +53,7 @@ export const Searchpage = () => {
 		},
 	});
 
-
+//funcion para validar condiciones de agregado de heroes
 const HandleAdd = ({...heroe}) => {
 	//validacion si el id ya esta incluido en el equipo antes de iniciar el proceso de validaciones
 if (tb[tb.findIndex((x) => x.id === heroe.id)]){
@@ -297,4 +300,4 @@ if (tb[tb.findIndex((x) => x.id === heroe.id)]){
       </section>
     </>
   );
-};
+}
