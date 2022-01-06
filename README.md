@@ -23,7 +23,7 @@ axios:^0.24.0 -Libreria para hacer peticiones http
 	 react-toastify:^8.1.0-Libreria utilizada para mostrar mensajes de alerta en pantalla  
 	 redux: ^4.1.2-Libreria para manejar estados
 	 
-`PD:`
-Ejecutar en modo local, porque la api que devuelve el token para el login de alkemy no permite conexiones externas.
-Usuario : challenge@alkemy.org
-password: react
+`PD:`  
+Ejecutar en modo local, porque la api que devuelve el token para el login de alkemy no permite conexiones externas.  
+Usuario : challenge@alkemy.org  
+password: react  
