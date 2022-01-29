@@ -5,15 +5,15 @@ import "react-toastify/dist/ReactToastify.css"
 import axios from "axios"
 import { useHistory } from "react-router-dom"
 import { useFormik } from "formik"
-import {AuthContext} from '../auth/AuthContext'
+import { AuthContext } from '../auth/AuthContext'
 import { types } from "../types/types"
 
 export const Loginpage = () => {
 	const url = "http://challenge-react.alkemy.org/"
 	const history = useHistory()
-	const {dispatch} = useContext(AuthContext)
-
-//llamada a la api de alkemy por el token para el inicio de sesion
+	const { dispatch } = useContext(AuthContext)
+	//testghprasd
+	//llamada a la api de alkemy por el token para el inicio de sesion
 	const formSubmit = () => {
 		axios
 			.post(url, {
@@ -23,14 +23,14 @@ export const Loginpage = () => {
 			.then(({ data }) => {
 				dispatch({
 					type: types.login,
-					payload:{
-						user:'AlkemyUser'
+					payload: {
+						user: 'AlkemyUser'
 					}
 				})
 				sessionStorage.setItem("token", data.token);
 				history.push("/home");
 			})
-			.catch(({ response}) => {
+			.catch(({ response }) => {
 				toast.error(response.data.error, {
 					position: "bottom-center",
 					autoClose: 1500,
@@ -43,7 +43,7 @@ export const Loginpage = () => {
 				});
 			});
 	}
-//validacion del formulario 
+	//validacion del formulario 
 	const formik = useFormik({
 		initialValues: {
 			email: "",
@@ -84,9 +84,9 @@ export const Loginpage = () => {
 							onChange={formik.handleChange}
 							value={formik.values.email}
 						/>
-						{formik.errors.email 
-						? <div>{formik.errors.email}</div> 
-						: null}
+						{formik.errors.email
+							? <div>{formik.errors.email}</div>
+							: null}
 					</div>
 					<div className="mb-3">
 						<label
@@ -101,9 +101,9 @@ export const Loginpage = () => {
 							onChange={formik.handleChange}
 							value={formik.values.password}
 						/>
-						{formik.errors.password 
-						? <div>{formik.errors.password}</div> 
-						: null}
+						{formik.errors.password
+							? <div>{formik.errors.password}</div>
+							: null}
 					</div>
 					<button
 						className="btn btn-primary"
