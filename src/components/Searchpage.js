@@ -21,7 +21,12 @@ export const Searchpage = () => {
 	const {countHeroes, goodHeroes, badHeroes} = useSelector((state) => state.teambuilder)
 	//selecciona array de heroes de la store
 	const tb = useSelector((state)=> state.teambuilder.heroTB)
-	
+	const config= {
+		headers: {
+			"Content-Type": "application/json",
+		},
+	};
+
 
 //consulta a la api segun la busqueda
 	const formik = useFormik({
@@ -32,7 +37,7 @@ export const Searchpage = () => {
 			if (q === "") {
 				return;
 			} else {
-				axios(`${baseUrl}/search/${q}`)
+				axios(`${baseUrl}/search/${q}`, config)
 					.then(({ data }) => {
 						if (data.results === undefined) {
 							setHeroes([]);
