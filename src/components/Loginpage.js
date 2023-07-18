@@ -2,47 +2,74 @@ import React, { useContext } from "react"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
-import axios from "axios"
+// import axios from "axios"
 import { useHistory } from "react-router-dom"
 import { useFormik } from "formik"
 import {AuthContext} from '../auth/AuthContext'
 import { types } from "../types/types"
 
 export const Loginpage = () => {
-	const url = "http://challenge-react.alkemy.org/"
+	// const url = "https://challenge-react.alkemy.org/"
 	const history = useHistory()
 	const {dispatch} = useContext(AuthContext)
 
 //llamada a la api de alkemy por el token para el inicio de sesion
+	// const formSubmit = () => {
+	// 	axios
+	// 		.post(url, {
+	// 			email: formik.values.email,
+	// 			password: formik.values.password,
+	// 		})
+	// 		.then(({ data }) => {
+	// 			dispatch({
+	// 				type: types.login,
+	// 				payload:{
+	// 					user:'AlkemyUser'
+	// 				}
+	// 			})
+	// 			sessionStorage.setItem("token", data.token);
+	// 			history.push("/home");
+	// 		})
+	// 		.catch(({ response}) => {
+	// 			toast.error(response.data.error, {
+	// 				position: "bottom-center",
+	// 				autoClose: 1500,
+	// 				hideProgressBar: true,
+	// 				closeOnClick: true,
+	// 				pauseOnHover: true,
+	// 				draggable: true,
+	// 				progress: undefined,
+	// 				theme: "colored",
+	// 			});
+	// 		});
+	// }
 	const formSubmit = () => {
-		axios
-			.post(url, {
-				email: formik.values.email,
-				password: formik.values.password,
-			})
-			.then(({ data }) => {
+		const { email, password } = formik.values;
+	
+		if (email === 'user@email.com' && password === 'public') {
 				dispatch({
 					type: types.login,
 					payload:{
 						user:'AlkemyUser'
 					}
 				})
-				sessionStorage.setItem("token", data.token);
-				history.push("/home");
-			})
-			.catch(({ response}) => {
-				toast.error(response.data.error, {
-					position: "bottom-center",
-					autoClose: 1500,
-					hideProgressBar: true,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-					theme: "colored",
-				});
+	
+			history.push("/home");
+		} else {
+			toast.error("Credenciales inválidas", {
+				position: "bottom-center",
+				autoClose: 1500,
+				hideProgressBar: true,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "colored",
 			});
-	}
+		}
+	};
+	
+	
 //validacion del formulario 
 	const formik = useFormik({
 		initialValues: {
@@ -71,6 +98,9 @@ export const Loginpage = () => {
 
 	return (
 		<>
+			<div className="container-fluid mt-5 justify-content-center text-danger">
+			*Lamentablemente los endpoints del login de alkemy son inseguros y no 
+			pueden ser hosteados en internet por lo	que el usuario y el email estan hardcodeados</div>
 			<div className="mt-5 container-fluid d-flex justify-content-center">
 				<form onSubmit={formik.handleSubmit}>
 					<div className="mb-3">
@@ -83,7 +113,8 @@ export const Loginpage = () => {
 							autoComplete="off"
 							onChange={formik.handleChange}
 							value={formik.values.email}
-						/>
+							placeholder="user@email.com"
+						/><span>user@email.com</span>
 						{formik.errors.email 
 						? <div>{formik.errors.email}</div> 
 						: null}
@@ -100,7 +131,9 @@ export const Loginpage = () => {
 							autoComplete="off"
 							onChange={formik.handleChange}
 							value={formik.values.password}
+							placeholder="public"
 						/>
+						<span>public</span>
 						{formik.errors.password 
 						? <div>{formik.errors.password}</div> 
 						: null}

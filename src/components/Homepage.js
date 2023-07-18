@@ -11,7 +11,7 @@ export const Homepage = () => {
     <>
       <div className="d-flex flex-wrap col-lg-12">
         <div className=" col-lg-9">
-           <TeamBuilder />
+					<TeamBuilder />
         </div>
         <div className="mt-5 col-lg-3">
           <TeamStats />

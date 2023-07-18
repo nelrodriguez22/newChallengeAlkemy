@@ -11,12 +11,16 @@ import {
 } from "../redux/ducks/tb"
 import { useDispatch, useSelector } from "react-redux"
 import "react-toastify/dist/ReactToastify.css"
+import { useHistory } from "react-router-dom"
+
 
 
 export const Searchpage = () => {
 	const baseUrl = "https://superheroapi.com/api/10221785482721212";
 	const [ heroes, setHeroes ] = useState([])
 	const dispatch = useDispatch()
+	const history = useHistory()
+
 	//selecciona contadores de la store
 	const {countHeroes, goodHeroes, badHeroes} = useSelector((state) => state.teambuilder)
 	//selecciona array de heroes de la store
@@ -26,7 +30,22 @@ export const Searchpage = () => {
 			"Content-Type": "application/json",
 		},
 	};
-
+	(function() {
+    var cors_api_host = 'cors-anywhere.herokuapp.com';
+    var cors_api_url = 'https://' + cors_api_host + '/';
+    var slice = [].slice;
+    var origin = window.location.protocol + '//' + window.location.host;
+    var open = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function() {
+        var args = slice.call(arguments);
+        var targetOrigin = /^https?:\/\/([^/]+)/i.exec(args[1]);
+        if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
+            targetOrigin[1] !== cors_api_host) {
+            args[1] = cors_api_url + args[1];
+        }
+        return open.apply(this, args);
+    };
+})();
 
 //consulta a la api segun la busqueda
 	const formik = useFormik({
@@ -37,7 +56,7 @@ export const Searchpage = () => {
 			if (q === "") {
 				return;
 			} else {
-				axios(`${baseUrl}/search/${q}`, config)
+				axios(`https://cors-anywhere.herokuapp.com/${baseUrl}/search/${q}`, config)
 					.then(({ data }) => {
 						if (data.results === undefined) {
 							setHeroes([]);
@@ -126,8 +145,13 @@ if (tb[tb.findIndex((x) => x.id === heroe.id)]){
 	}
 }
 };
+if(countHeroes === 6){
+	history.push("/home");
+}
 	return (
     <>
+		{countHeroes < 6 ? <div className="container-fluid mt-5 justify-content-center text-danger">
+			*Si no conoces ningun heroe, busca alineacion buena (Batman, Ironman, Ironfist) y negativa(Joker,Deathstrike,steppenwolf)</div> : null}
       <form onSubmit={formik.handleSubmit} className="container mt-4">
         <div className="col-sm-5 container-fluid">
           <div className="input-group mb-3">
